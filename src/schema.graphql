@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateTodoInput {
+  """input todo description"""
+  description: String!
+
+  """input todo title"""
+  title: String!
+}
+
+"""Date scalar type"""
+scalar Date
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  removeTodo(id: String!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+}
+
+type Query {
+  todo(id: String!): Todo!
+  todos: [Todo!]!
+}
+
+type Todo {
+  """string field"""
+  createdAt: Date!
+
+  """Example field (placeholder)"""
+  description: String!
+
+  """string field"""
+  id: ID!
+
+  """Example field (placeholder)"""
+  title: String!
+}
+
+input UpdateTodoInput {
+  """input todo description"""
+  description: String
+
+  """update to do input  (placeholder)"""
+  id: String!
+
+  """input todo title"""
+  title: String
+}
