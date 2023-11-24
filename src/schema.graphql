@@ -29,9 +29,14 @@ input CreateTodoInput {
 """Date scalar type"""
 scalar Date
 
+type LogOutResponse {
+  """Example field (placeholder)"""
+  loggedOut: Boolean!
+}
+
 type Mutation {
   createTodo(createTodoInput: CreateTodoInput!): Todo!
-  removeAuth(id: Int!): Auth!
+  logout(id: String!): LogOutResponse!
   removeTodo(id: String!): Todo!
   signIn(signininput: SignInInput!): SignResponse!
   signUp(createAuthInput: CreateAuthInput!): SignResponse!

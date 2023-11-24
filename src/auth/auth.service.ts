@@ -58,6 +58,20 @@ export class AuthService {
   findOne(id: string) {
     return `This action returns a #${id} auth`;
   }
+  async logOut(userId: string) {
+    await this.prisma.user.updateMany({
+      where: {
+        id: userId,
+        hashedRefreshToken: { not: null },
+      },
+      data: {
+        hashedRefreshToken: null,
+      },
+    });
+    return {
+      loggedOut: true,
+    };
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   update(id: string, _updateAuthInput: UpdateAuthInput) {
