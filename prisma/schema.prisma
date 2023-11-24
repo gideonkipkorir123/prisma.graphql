@@ -21,7 +21,7 @@ model Todo {
 model User {
   id                 String   @id @default(uuid())
   username           String   @unique
-  email              String
+  email              String   @unique
   hashedPassword     String
   hashedRefreshToken String?
   createdAt          DateTime @default(now())
