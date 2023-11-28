@@ -78,8 +78,28 @@ export class AuthService {
     return `This action updates a #${id} auth`;
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} auth`;
+  async getNewTokens(userId: string, refToken: string) {
+    const user = await this.prisma.user.findUnique({
+      where: {
+        id: userId,
+      },
+    });
+    if (!user) {
+      throw new ForbiddenException("Access Denied since the users dont match");
+    }
+    const doRefreshToken = await argon2.verify(
+      user.hashedRefreshToken,
+      refToken,
+    );
+    if (!doRefreshToken) {
+      throw new ForbiddenException("Access Denied");
+    }
+    const { accessToken, refreshToken } = await this.createToken(
+      user.id,
+      user.email,
+    );
+    await this.updateRefreshTokenHashed(userId, refreshToken);
+    return { accessToken, refreshToken, user };
   }
   async createToken(userId: string, email: string) {
     const accessToken = this.jwtService.sign(

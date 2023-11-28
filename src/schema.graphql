@@ -36,6 +36,7 @@ type LogOutResponse {
 
 type Mutation {
   createTodo(createTodoInput: CreateTodoInput!): Todo!
+  getNewTokens: NewTokenResponse!
   logout(id: String!): LogOutResponse!
   removeTodo(id: String!): Todo!
   signIn(signininput: SignInInput!): SignResponse!
@@ -44,8 +45,17 @@ type Mutation {
   updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
 }
 
+type NewTokenResponse {
+  """AccessToken field"""
+  accessToken: String!
+
+  """Refresh Token field"""
+  refreshToken: String!
+}
+
 type Query {
   auth(id: Int!): Auth!
+  hello: String!
   todo(id: String!): Todo!
   todos: [Todo!]!
 }
