@@ -1,0 +1,182 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Auth {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateAuthInput {
+  """email field (placeholder)"""
+  email: String!
+
+  """password field"""
+  hashedPassword: String!
+
+  """username field  (placeholder)"""
+  username: String!
+}
+
+input CreateProductInput {
+  """Products brand field"""
+  brand: String!
+
+  """Product brand field """
+  image: String!
+
+  """Product name field """
+  name: String!
+
+  """Product number field"""
+  price: Float! = 0
+
+  """Product price quantity field"""
+  quantity: Float!
+}
+
+input CreateTodoInput {
+  """input todo description"""
+  description: String!
+
+  """input todo title"""
+  title: String!
+}
+
+"""Date scalar type"""
+scalar Date
+
+type LogOutResponse {
+  """Example field (placeholder)"""
+  loggedOut: Boolean!
+}
+
+type Mutation {
+  createProduct(createProductInput: CreateProductInput!): Product!
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  getNewTokens: NewTokenResponse!
+  logout(id: String!): LogOutResponse!
+  removeProduct(id: Int!): Product!
+  removeTodo(id: String!): Todo!
+  signIn(signininput: SignInInput!): SignResponse!
+  signUp(createAuthInput: CreateAuthInput!): SignResponse!
+  updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+}
+
+type NewTokenResponse {
+  """AccessToken field"""
+  accessToken: String!
+
+  """Refresh Token field"""
+  refreshToken: String!
+}
+
+type Product {
+  """Products brand field """
+  brand: String!
+
+  """Product image field"""
+  image: String!
+
+  """Product name field """
+  name: String!
+
+  """Product number field"""
+  price: Float!
+
+  """Product quantity field"""
+  quantity: Float!
+}
+
+type Query {
+  auth(id: Int!): Auth!
+  hello: String!
+  product(id: String!): Product!
+  products: [Product!]!
+  todo(id: String!): Todo!
+  todos: [Todo!]!
+}
+
+input SignInInput {
+  """email field """
+  email: String!
+
+  """password field"""
+  password: String!
+}
+
+type SignResponse {
+  """AccessToken field"""
+  accessToken: String!
+
+  """AccessToken field"""
+  refreshToken: String!
+  user: User!
+}
+
+type Todo {
+  """string field"""
+  createdAt: Date!
+
+  """Example field (placeholder)"""
+  description: String!
+
+  """string field"""
+  id: ID!
+
+  """Example field (placeholder)"""
+  title: String!
+}
+
+input UpdateAuthInput {
+  """email field (placeholder)"""
+  email: String
+
+  """password field"""
+  hashedPassword: String
+  id: String!
+
+  """username field  (placeholder)"""
+  username: String
+}
+
+input UpdateProductInput {
+  """Products brand field"""
+  brand: String
+  id: Int!
+
+  """Product brand field """
+  image: String
+
+  """Product name field """
+  name: String
+
+  """Product number field"""
+  price: Float = 0
+
+  """Product price quantity field"""
+  quantity: Float
+}
+
+input UpdateTodoInput {
+  """input todo description"""
+  description: String
+
+  """update to do input  (placeholder)"""
+  id: String!
+
+  """input todo title"""
+  title: String
+}
+
+type User {
+  email: String!
+
+  """AccessToken filed (placeholder)"""
+  id: String!
+
+  """AccessToken filed (placeholder)"""
+  username: String!
+}
