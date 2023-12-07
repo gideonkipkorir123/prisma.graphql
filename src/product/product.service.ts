@@ -31,11 +31,22 @@ export class ProductService {
     });
   }
 
-  update(id: string, _updateProductInput: UpdateProductInput) {
-    return `This action updates a #${id} product`;
+  update(id: string, updateProductInput: UpdateProductInput) {
+    return this.prisma.products.update({
+      where: {
+        id,
+      },
+      data: {
+        ...updateProductInput,
+      },
+    });
   }
 
   remove(id: string) {
-    return `This action removes a #${id} product`;
+    return this.prisma.products.delete({
+      where: {
+        id,
+      },
+    });
   }
 }

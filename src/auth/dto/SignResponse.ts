@@ -1,6 +1,5 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { IsNotEmpty, IsString } from "class-validator";
-import { User } from "src/user/userEntity";
+import { User } from "../../user/entities/user.entity";
 
 @ObjectType()
 export class SignResponse {

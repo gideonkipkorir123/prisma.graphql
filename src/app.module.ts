@@ -10,6 +10,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { APP_GUARD } from "@nestjs/core";
 import { AccessTokenGuards } from "./auth/guard/accessToken.guard";
 import { ProductModule } from "./product/product.module";
+import { PaymentModule } from "./payment/payment.module";
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ProductModule } from "./product/product.module";
     AuthModule,
     UserModule,
     ProductModule,
+    PaymentModule,
   ],
   providers: [
     PrismaService,

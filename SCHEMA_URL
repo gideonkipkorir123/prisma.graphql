@@ -35,6 +35,19 @@ input CreateProductInput {
   quantity: Float!
 }
 
+input CreateSessionInput {
+  """id field (placeholder)"""
+  id: String!
+
+  """quantity number  (placeholder)"""
+  quantity: Float!
+}
+
+type CreateSessionResponse {
+  """URL session return  (placeholder)"""
+  url: String!
+}
+
 input CreateTodoInput {
   """input todo description"""
   description: String!
@@ -43,25 +56,50 @@ input CreateTodoInput {
   title: String!
 }
 
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 """Date scalar type"""
 scalar Date
+
+input LOGINDTO {
+  """email field """
+  email: String!
+
+  """password field"""
+  password: String!
+}
 
 type LogOutResponse {
   """Example field (placeholder)"""
   loggedOut: Boolean!
 }
 
+type LoginResponse {
+  user: User!
+}
+
 type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
+  createSessionInput(items: [CreateSessionInput!]!): CreateSessionResponse!
   createTodo(createTodoInput: CreateTodoInput!): Todo!
+  createUser(createUserInput: CreateUserInput!): User!
   getNewTokens: NewTokenResponse!
+  login(loginUser: LOGINDTO!): LoginResponse!
   logout(id: String!): LogOutResponse!
-  removeProduct(id: Int!): Product!
+  refreshToken: String!
+  register(registerInput: RegisterDto!): RegisterResponse!
+  removePayment(id: Int!): Payment!
+  removeProduct(id: String!): Product!
   removeTodo(id: String!): Todo!
   signIn(signininput: SignInInput!): SignResponse!
   signUp(createAuthInput: CreateAuthInput!): SignResponse!
   updateAuth(updateAuthInput: UpdateAuthInput!): Auth!
+  updatePayment(updatePaymentInput: UpdatePaymentInput!): Payment!
   updateProduct(updateProductInput: UpdateProductInput!): Product!
+  updateProfile(file: Upload, username: String!): User!
   updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
 }
 
@@ -71,6 +109,14 @@ type NewTokenResponse {
 
   """Refresh Token field"""
   refreshToken: String!
+}
+
+type Payment {
+  """Example field (placeholder)"""
+  id: String!
+
+  """Example field (placeholder)"""
+  quantity: Int!
 }
 
 type Product {
@@ -93,10 +139,23 @@ type Product {
 type Query {
   auth(id: Int!): Auth!
   hello: String!
+  payment(id: Int!): Payment!
   product(id: String!): Product!
   products: [Product!]!
   todo(id: String!): Todo!
   todos: [Todo!]!
+  user(id: Int!): User!
+}
+
+input RegisterDto {
+  confirmPassword: String!
+  email: String!
+  hashedPassword: String!
+  username: String!
+}
+
+type RegisterResponse {
+  user: User
 }
 
 input SignInInput {
@@ -142,10 +201,18 @@ input UpdateAuthInput {
   username: String
 }
 
+input UpdatePaymentInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input UpdateProductInput {
   """Products brand field"""
   brand: String
-  id: Int!
+
+  """update product id input  (placeholder)"""
+  id: String!
 
   """Product brand field """
   image: String
@@ -171,12 +238,19 @@ input UpdateTodoInput {
   title: String
 }
 
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
+
 type User {
+  avatarUrl: String
+  createdAt: Date
   email: String!
 
-  """AccessToken filed (placeholder)"""
-  id: String!
+  """id field description"""
+  id: String
+  password: String
+  updatedAt: Date
 
-  """AccessToken filed (placeholder)"""
+  """username field description"""
   username: String!
 }
